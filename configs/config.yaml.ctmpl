@@ -1,0 +1,12 @@
+env: prod
+log: /var/logs/stagger.log
+
+debug:
+  addr: localhost:12000
+
+http:
+  addr: localhost:8080
+
+sqlite:
+  init: configs/default.sql
+  file: data/db.sqlite
