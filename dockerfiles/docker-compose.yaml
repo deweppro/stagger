@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+
+  app:
+    image: markus621/golang:1.1.0
+    container_name: stagger-appgo
+    working_dir: /app
+    command: go test -v ./...
+    links:
+      - consul
+    volumes:
+      - ./../:/app
+
+  consul:
+    image: consul:1.7
+    container_name: stagger-consul
+    command: agent -dev -server -ui -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect 1
