@@ -19,3 +19,4 @@ configs/config.yaml
 *.pid
 *.sqlite
 *.tar
+coverage.txt
