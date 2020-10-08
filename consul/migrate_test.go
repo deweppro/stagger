@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020 Mikhail Knyazhev <markus621@gmail.com>.
+ * All rights reserved. Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+
 package consul
 
 import (
@@ -7,7 +13,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestCreateConsulMigrate(t *testing.T) {
+func TestIntegration_CreateConsulMigrate(t *testing.T) {
 	cli, err := CreateConsulMigrate("consul:8500")
 	require.NoError(t, err)
 

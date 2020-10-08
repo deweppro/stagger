@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020 Mikhail Knyazhev <markus621@gmail.com>.
+ * All rights reserved. Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+
 package consul
 
 import (
@@ -48,11 +54,13 @@ func (m *ConsulMigrate) Dump() (KVList, error) {
 	}
 	result := make(KVList, 0)
 	for _, i := range kv {
-		result = append(result, KVItem{
+		nkv := KVItem{
 			Key:   i.Key,
 			Value: string(i.Value),
 			Type:  "",
-		})
+		}
+		nkv.Type = nkv.DetectType()
+		result = append(result, nkv)
 	}
 	return result, nil
 }

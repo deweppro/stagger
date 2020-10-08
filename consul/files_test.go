@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020 Mikhail Knyazhev <markus621@gmail.com>.
+ * All rights reserved. Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+
 package consul
 
 import (
@@ -8,7 +14,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestDirDecode(t *testing.T) {
+func TestUnit_DirDecode(t *testing.T) {
 	path, err := ioutil.TempDir("/tmp", "TestDirDecode_*")
 	require.NoError(t, err)
 	dataYaml := `
@@ -39,7 +45,7 @@ func TestDirDecode(t *testing.T) {
 	require.Equal(t, required, actual, "required %v actual %v", required, actual)
 }
 
-func TestFileDecode(t *testing.T) {
+func TestUnit_FileDecode(t *testing.T) {
 	path, err := ioutil.TempDir("/tmp", "TestDirDecode_*")
 	require.NoError(t, err)
 	dataYaml := `
@@ -59,7 +65,7 @@ func TestFileDecode(t *testing.T) {
 	require.Equal(t, required, actual, "required %v actual %v", required, actual)
 }
 
-func TestFileEncode(t *testing.T) {
+func TestUnit_FileEncode(t *testing.T) {
 	path, err := ioutil.TempDir("/tmp", "TestDirDecode_*")
 	require.NoError(t, err)
 	required := `- key: aaa
@@ -77,7 +83,7 @@ func TestFileEncode(t *testing.T) {
 	require.Equal(t, required, string(actual), "required %v actual %v", required, string(actual))
 }
 
-func TestIsAllowedExtension(t *testing.T) {
+func TestUnit_IsAllowedExtension(t *testing.T) {
 	tests := []struct {
 		name     string
 		filename string
