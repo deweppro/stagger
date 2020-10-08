@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2020 Mikhail Knyazhev <markus621@gmail.com>.
+ * All rights reserved. Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+
 package consul
 
 import (
@@ -68,4 +74,21 @@ func (kvi KVItem) Validate() error {
 	}
 
 	return nil
+}
+
+func (kvi KVItem) DetectType() string {
+	if len(kvi.Value) == 0 {
+		return TypeDefault
+	}
+
+	var t json.RawMessage
+	if err := json.Unmarshal([]byte(kvi.Value), &t); err == nil {
+		return TypeJson
+	}
+
+	if _, err := base64.StdEncoding.DecodeString(kvi.Value); err == nil {
+		return TypeBase64
+	}
+
+	return TypeDefault
 }
